@@ -1,23 +1,29 @@
 const subtrair = document.querySelector("#subtrair")
 const somar = document.querySelector("#somar") 
-const braco = document.querySelector("#braco")
+
 
 /*  Pegando todos os elementos com a classe .controle-ajuste*/
-const controle = document.querySelectorAll(".controle-ajuste")
+const controle = document.querySelectorAll("[data-controle]")
 
 /*Interação dos elementos no Array controle  */
 controle.forEach((elemento) => {
     elemento.addEventListener("click", (evento) =>{ 
-        manipulaDados(evento.target.textContent)
+        manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
+        console.log(evento.target.parentNode)
+
     })
 })
 
-/* Função Para Adicionar dados Na Section Equipamentos*/
-function manipulaDados(operacao){   
+/* Função Para Adicionar Dados Na Section Equipamentos*/
+function manipulaDados(operacao, controle){
+    
+    const peca = controle.querySelector("[data-contador]")
+    console.log(peca)
+
     if(operacao == "-"){
-        braco.value=  parseInt(braco.value) - 1
+        peca.value=  parseInt(peca.value) - 1
     }
     else{
-        braco.value =  parseInt(braco.value) + 1
+        peca.value =  parseInt(peca.value) + 1
     }
 }
